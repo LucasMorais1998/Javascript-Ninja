@@ -85,7 +85,7 @@ function otherFunction(a, b, c) {
 
 	} else if(a === undefined && b === undefined && c === undefined){
 		return false;
-
+		
 	} else {
 		return null;
 	}
@@ -93,8 +93,8 @@ function otherFunction(a, b, c) {
 
 // Invoque a função acima utilizando todas as possibilidades (com nenhum argumento, com um, com dois e com três.) Coloque um comentário de linha ao lado da função com o resultado de cada invocação.
 ?
-otherFunction(); // false
-otherFunction(2); // 2
-otherFunction(2, 4); // 6
-otherFunction(2, 4, 2); // 3
+otherFunction(); // false;
+otherFunction(2); // 2;
+otherFunction(2, 4); // 6;
+otherFunction(2, 4, 2); // 3;
 ```
