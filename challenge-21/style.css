@@ -1,0 +1,84 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Helvetica, sans-serif;
+}
+
+.container {
+  width: 20%;
+  margin: 0 auto;
+  margin-top: 5%;
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-color: lightblue;
+  border: 1px solid black;
+  border-radius: 8px;
+  box-shadow: 5px 3px 5px rgb(39, 94, 110);
+}
+
+h1 {
+  margin: 0 0 15px 0;
+  font-size: 18px;
+  color: white;
+  text-shadow: 0px 2px 5px black;
+}
+
+input {
+  max-width: 50px;
+  outline: none;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 2px;
+  text-align: center;
+  font-size: 15px;
+}
+
+.button-box {
+  margin-top: .5em;
+  display: flex;
+  gap: .8em;
+}
+
+button {
+  margin-top: 8px;
+  padding: 4px 8px;
+  color: rgb(0, 0, 0);
+  border-radius: 5px;
+  border: none;
+  transition: all 200ms ease-in-out;
+  font-size: 15px;
+}
+
+button:hover {
+  cursor: pointer;
+  color: white;
+}
+
+button[data-js="start-button"] {
+  background-color: lightgreen;
+}
+
+button[data-js="start-button"]:hover {
+  background-color: rgb(23, 143, 23);
+}
+
+button[data-js="stop-button"] {
+  background-color: lightcoral;
+}
+
+button[data-js="stop-button"]:hover {
+  background-color: rgb(185, 40, 40);
+}
+
+button[data-js="reset-button"] {
+  background-color: rgb(240, 189, 169);
+}
+
+button[data-js="reset-button"]:hover {
+  background-color: rgb(206, 139, 15);
+}
