@@ -23,3 +23,72 @@ multiplicação (x), então no input deve aparecer "1+2x".
 input;
 - Ao pressionar o botão "CE", o input deve ficar zerado.
 */
+
+let input = document.querySelector('[data-js="input"]');
+let view = document.querySelector('[data-js="view"]');
+let viewOperator = document.querySelector('[data-js="operator"]');
+
+let buttonsNumbers = document.querySelectorAll('[data-js="button-number"]');
+let buttonOperators = document.querySelectorAll('[data-js="button-operator"]');
+
+let buttonCE = document.querySelector('[data-js="button-ce"]');
+let buttonC = document.querySelector('[data-js="button-c"]');
+let buttonEqual = document.querySelector('[data-js="button-equal"]');
+
+Array.prototype.forEach.call(buttonsNumbers, (btn) => {
+  btn.addEventListener("click", handleClickNumber, false);
+});
+
+Array.prototype.forEach.call(buttonOperators, (btn) => {
+  btn.addEventListener("click", handleClickOperation, false);
+});
+
+buttonCE.addEventListener("click", handleClickCE, false);
+buttonC.addEventListener("click", handleClickC, false);
+
+buttonEqual.addEventListener("click", handleClickEqual, false);
+
+function handleClickNumber() {
+  if (input.value === "0") {
+    input.value = "";
+  }
+
+  input.value += this.value;
+}
+
+function handleClickOperation() {
+  removeLastItemIfItIsAnOperator();
+
+  input.value += this.value;
+}
+
+function handleClickCE() {
+  input.value = "0";
+}
+
+function handleClickC() {
+  view.innerHTML = "";
+  input.value = "0";
+}
+
+function handleClickEqual() {
+  removeLastItemIfItIsAnOperator();
+
+  view.innerHTML = input.value;
+}
+
+function isLastItemAnOperation() {
+  const operators = ["%", "÷", "×", "-", "+"];
+
+  let lastItem = input.value.split("").pop();
+
+  return operators.some((operator) => {
+    return operator === lastItem;
+  });
+}
+
+function removeLastItemIfItIsAnOperator() {
+  if (isLastItemAnOperation()) {
+    input.value = input.value.slice(0, -1);
+  }
+}

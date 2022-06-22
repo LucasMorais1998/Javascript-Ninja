@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Calculator</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="input">
+        <p class="view" data-js="view">
+          
+        </p>
+        <input type="text" value="0" readonly data-js="input" />
+      </div>
+
+      <div class="buttons">
+        <div class="first-line">
+          <button data-js="button-ce" value="ce">CE</button>
+          <button data-js="button-c" value="c">C</button>
+          <button data-js="button-operator" value="%">%</button>
+          <button data-js="button-operator" value="÷">÷</button>
+        </div>
+
+        <div class="second-line">
+          <button data-js="button-number" value="7">7</button>
+          <button data-js="button-number" value="8">8</button>
+          <button data-js="button-number" value="9">9</button>
+          <button data-js="button-operator" value="×">×</button>
+        </div>
+
+        <div class="third-line">
+          <button data-js="button-number" value="4">4</button>
+          <button data-js="button-number" value="5">5</button>
+          <button data-js="button-number" value="6">6</button>
+          <button data-js="button-operator" value="-">-</button>
+        </div>
+
+        <div class="fourth-line">
+          <button data-js="button-number" value="1">1</button>
+          <button data-js="button-number" value="2">2</button>
+          <button data-js="button-number" value="3">3</button>
+          <button data-js="button-operator" value="+">+</button>
+        </div>
+
+        <div class="fifth-line">
+          <button data-js="button-number" value="0">0</button>
+          <button data-js="button-dot" value=".">.</button>
+          <button data-js="button-equal" value="=">=</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="challenge-23.js"></script>
+  </body>
+</html>
