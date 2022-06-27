@@ -5,6 +5,13 @@
   font-family: "Roboto", sans-serif;
 }
 
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5em;
+}
+
 button {
   background-color: #22252d;
   color: white;
@@ -53,6 +60,7 @@ button:hover {
 
 .view {
   padding-right: 14px;
+  min-height: 1.2em;
 }
 
 

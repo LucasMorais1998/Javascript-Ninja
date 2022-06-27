@@ -33,6 +33,7 @@ let buttonOperators = document.querySelectorAll('[data-js="button-operator"]');
 
 let buttonCE = document.querySelector('[data-js="button-ce"]');
 let buttonC = document.querySelector('[data-js="button-c"]');
+let buttonDEL = document.querySelector('[data-js="button-del"]');
 let buttonEqual = document.querySelector('[data-js="button-equal"]');
 
 Array.prototype.forEach.call(buttonsNumbers, (btn) => {
@@ -45,6 +46,7 @@ Array.prototype.forEach.call(buttonOperators, (btn) => {
 
 buttonCE.addEventListener("click", handleClickCE, false);
 buttonC.addEventListener("click", handleClickC, false);
+buttonDEL.addEventListener("click", handleClickDEL, false);
 
 buttonEqual.addEventListener("click", handleClickEqual, false);
 
@@ -57,7 +59,7 @@ function handleClickNumber() {
 }
 
 function handleClickOperation() {
-  removeLastItemIfItIsAnOperator();
+  input.value = removeLastItemIfItIsAnOperator(input.value);
 
   input.value += this.value;
 }
@@ -71,24 +73,58 @@ function handleClickC() {
   input.value = "0";
 }
 
-function handleClickEqual() {
-  removeLastItemIfItIsAnOperator();
+function handleClickDEL() {
+  input.value = input.value.slice(0, -1);
 
-  view.innerHTML = input.value;
+  if (input.value == "") {
+    input.value = "0"
+  }
 }
 
-function isLastItemAnOperation() {
-  const operators = ["%", "÷", "×", "-", "+"];
+function handleClickEqual() {
+  input.value = removeLastItemIfItIsAnOperator(input.value);
 
-  let lastItem = input.value.split("").pop();
+  const allValues = input.value.match(/\d+[+-×÷]?/g);
+  input.value = allValues.reduce((accumulated, actual) => {
+    let firstValue = accumulated.slice(0, -1);
+    let lastValue = removeLastItemIfItIsAnOperator(actual);
+    let operator = accumulated.split("").pop();
+    let lastOperator = isLastItemAnOperation(actual)
+      ? actual.split("").pop()
+      : "";
+
+    switch (operator) {
+      case "+":
+        view.textContent = `${firstValue} ${operator} ${lastValue} =`;
+        return Number(firstValue) + Number(lastValue) + lastOperator;
+
+
+      case "-":
+        return Number(firstValue) - Number(lastValue) + lastOperator;
+
+      case "×":
+        return Number(firstValue) * Number(lastValue) + lastOperator;
+
+      case "÷":
+        return Number(firstValue) / Number(lastValue) + lastOperator;
+    }
+  });
+}
+
+function isLastItemAnOperation(number) {
+  const operators = ["÷", "×", "-", "+"];
+
+  let lastItem = number.split("").pop();
 
   return operators.some((operator) => {
     return operator === lastItem;
   });
 }
 
-function removeLastItemIfItIsAnOperator() {
-  if (isLastItemAnOperation()) {
-    input.value = input.value.slice(0, -1);
+function removeLastItemIfItIsAnOperator(number) {
+  if (isLastItemAnOperation(number)) {
+    return number.slice(0, -1);
   }
+
+  return number;
 }
