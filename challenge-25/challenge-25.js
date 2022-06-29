@@ -14,3 +14,21 @@ https://developer.mozilla.org/en-US/docs/Web/Events#Categories
 Tente aplicar na prática alguns dos eventos que estão ali e coloque nesse
 desafio os experimentos legais que você conseguir desenvolver :D
 */
+
+let changeBtn = document.querySelector('[data-js="change-btn"]');
+let hideBtn = document.querySelector('[data-js="hide-btn"]');
+let showBtn = document.querySelector('[data-js="show-btn"]');
+
+let img = document.querySelector('[data-js="image"]');
+
+changeBtn.addEventListener("click", () => {
+  window.location.reload();
+});
+
+hideBtn.addEventListener("click", () => {
+  img.style.visibility = "hidden";
+});
+
+showBtn.addEventListener("click", () => {
+  img.style.visibility = "visible";
+});
