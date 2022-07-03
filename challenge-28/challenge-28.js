@@ -1,4 +1,4 @@
-  /*
+/*
   No HTML:
   - Crie um formulário com um input de texto que receberá um CEP e um botão
   de submit;
@@ -24,4 +24,56 @@
   "Endereço referente ao CEP [CEP]:"
   - Utilize a lib DOM criada anteriormente para facilitar a manipulação e
   adicionar as informações em tela.
-  */
+*/
+
+let btnSubmit = document.querySelector('[data-js="submit"]');
+
+let logradouro = document.querySelector('[data-js="logradouro"]');
+let bairro = document.querySelector('[data-js="bairro"]');
+let estado = document.querySelector('[data-js="estado"]');
+let cidade = document.querySelector('[data-js="cidade"]');
+let userCep = document.querySelector('[data-js="userCep"]');
+
+let statusCode = document.querySelector('[data-js="statusCode"]');
+
+btnSubmit.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  let input = document.querySelector('[data-js="cep"]').value;
+
+  let ajax = new XMLHttpRequest();
+  let url = `https://viacep.com.br/ws/${input}/json/`;
+  let response = "";
+
+  ajax.open("GET", url);
+  ajax.send();
+
+  function isRequestOK() {
+    return ajax.readyState === 4 && ajax.status === 200;
+  }
+
+  ajax.addEventListener(
+    "readystatechange",
+    () => {
+      if (isRequestOK()) {
+        try {
+          response = JSON.parse(ajax.responseText);
+
+          console.log(ajax.status);
+          logradouro.textContent += response.logradouro;
+          bairro.textContent += response.bairro;
+          estado.textContent += response.uf;
+          cidade.textContent += response.localidade;
+          userCep.textContent += response.cep;
+
+          statusCode.textContent += +ajax.status;
+        } catch (err) {
+          console.error(err);
+        }
+      }
+
+      statusCode.textContent += `Não encontramos o endereço para o CEP: ${input}`;
+    },
+    false
+  );
+});
