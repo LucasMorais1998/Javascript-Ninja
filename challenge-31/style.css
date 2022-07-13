@@ -34,12 +34,20 @@ button {
   border: 0;
   color: #fff;
   padding: 10px 20px;
+  cursor: pointer;
 }
 
-button:hover,
-button:focus {
-  background: darkgreen;
+button[data-js="removeBtn"] {
+  background-color: red;
   cursor: pointer;
+}
+
+button:hover {
+  background: darkgreen;
+}
+
+button[data-js="removeBtn"]:hover {
+  background-color: darkred;
 }
 
 table {
